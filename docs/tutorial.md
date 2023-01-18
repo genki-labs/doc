@@ -2,11 +2,19 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Overview
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Let's discover **GenkiBox APIs in less than 5 minutes**.
 
-## Getting Started
+## What is GenkiBox?
+
+GenkiBox is a marketing campaign tool for events, raffles, giveaways, etc.
+
+## What are GenkiBox APIs?
+
+GenkiBox APIs are a set of RESTful APIs that connect to GenkiBox data.
+
+<!-- ## Getting Started
 
 Get started by **creating a new site**.
 
@@ -44,4 +52,4 @@ The `cd` command changes the directory you're working with. In order to work wit
 
 The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes. -->

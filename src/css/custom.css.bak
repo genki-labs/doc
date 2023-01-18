@@ -5,10 +5,8 @@
  */
 
 /* You can override the default Infima variables here. */
-/* https://tailwindcss.com/docs/text-color */
-/* Midpoint between text-orange-400 and text-orange-500 */
 :root {
-  --ifm-color-primary: #FA8329;
+  --ifm-color-primary: #2e8555;
   --ifm-color-primary-dark: #29784c;
   --ifm-color-primary-darker: #277148;
   --ifm-color-primary-darkest: #205d3b;
@@ -20,9 +18,8 @@
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-/* text-orange-500 */
 [data-theme='dark'] {
-  --ifm-color-primary: #F97316;
+  --ifm-color-primary: #25c2a0;
   --ifm-color-primary-dark: #21af90;
   --ifm-color-primary-darker: #1fa588;
   --ifm-color-primary-darkest: #1a8870;
@@ -30,24 +27,4 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-}
-
-.features {
-  display: flex;
-  justify-content: center;
-  gap: 2em;
-  margin-top: 4em;
-  margin-bottom: 4em;
-}
-
-.feature {
-  text-align: center;
-}
-
-.feature-header {
-  font-weight: 700;
-}
-
-.feature-description {
-  color: --ifm-color-primary;
 }
