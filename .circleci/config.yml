@@ -29,9 +29,7 @@ jobs:
           arguments: |
             --acl public-read \
             --cache-control "max-age=86400"
-          role-session-name: 'circle ci'  
           from: build
-          role-arn: 'arn:aws:iam::651905737308:role/S3_Controller'
           to: 's3://genki-doc/'
     
 
