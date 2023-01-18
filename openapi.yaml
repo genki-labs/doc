@@ -1,0 +1,184 @@
+openapi: 3.0.0
+paths:
+  /v1/quests/{id}/verify:
+    post:
+      operationId: Verify Action
+      summary: Verify Action
+      description: Verify if a user has done an action which belongs to the given quest.
+      parameters:
+        - name: authorization
+          required: true
+          in: header
+          description: 'Set the header as `Authorization: Bearer [YOUR API KEY HERE]`'
+          schema:
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: The quest ID
+          schema:
+            type: string
+        - name: user_address
+          required: true
+          in: path
+          description: The user wallet address
+          schema: {}
+      responses:
+        '200':
+          description: ''
+  /v1/campaigns/{id}/users/{address}:
+    get:
+      operationId: Get User Status
+      summary: Get User Status
+      description: >-
+        The user status of a given campaign. This API does **NOT** verify the
+        action. Please use [the Verify Action API](/api/verify-action) to update
+        the user status and then fetch it again.
+      parameters:
+        - name: authorization
+          required: true
+          in: header
+          description: 'Set the header as `Authorization: Bearer [YOUR API KEY HERE]`'
+          schema:
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: The campaign ID
+          schema:
+            type: string
+        - name: address
+          required: true
+          in: path
+          description: The user wallet address
+          schema:
+            type: string
+      responses:
+        '200':
+          description: >
+            A mapping of the user status. The keys are the quest IDs. If the
+            quest is completed, the value is `true`. If not, it will be `false`.
+
+            ```
+
+            {
+              "Quest ID A": boolean,
+              "Quest ID B": boolean,
+              ...
+            }
+
+            ```
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: boolean
+  /v1/campaigns/{id}/entries:
+    get:
+      operationId: Get Campaign Entries
+      summary: Get Campaign Entries
+      description: Get the entries of a given campaign.
+      parameters:
+        - name: authorization
+          required: true
+          in: header
+          description: 'Set the header as `Authorization: Bearer [YOUR API KEY HERE]`'
+          schema:
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: The campaign ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The campaign entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CampaignEntryDto'
+  /v1/campaigns/{id}/participants:
+    get:
+      operationId: Get Campaign Participants
+      summary: Get Campaign Participants
+      description: Get the participants of a given campaign.
+      parameters:
+        - name: authorization
+          required: true
+          in: header
+          description: 'Set the header as `Authorization: Bearer [YOUR API KEY HERE]`'
+          schema:
+            type: string
+        - name: id
+          required: true
+          in: path
+          description: The campaign ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The campaign participants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CampaignParticipantDto'
+info:
+  title: GenkiBox APIs
+  description: >
+    This documentation is for the developers who integrate the products with
+    GenkiBox campaign quest system.
+
+
+    ### APIs
+
+    * [Verify Action](/api/verify-action)
+
+    * [Get User Status](/api/get-user-status)
+
+    * [Get Campaign Entries](/api/get-campaign-entries)
+
+    * [Get Campaign Participants](/api/get-campaign-participants)
+  version: 1.0.0
+  contact: {}
+tags:
+  - name: GenkiBox
+    description: ''
+servers:
+  - url: https://api.genki.io
+components:
+  schemas:
+    CampaignEntryDto:
+      type: object
+      properties:
+        user_address:
+          type: string
+        quest_id:
+          type: string
+        when:
+          type: string
+        entries:
+          type: number
+      required:
+        - user_address
+        - quest_id
+        - when
+        - entries
+    CampaignParticipantDto:
+      type: object
+      properties:
+        user_address:
+          type: string
+        entries:
+          type: number
+        completed_quests:
+          type: number
+      required:
+        - user_address
+        - entries
+        - completed_quests

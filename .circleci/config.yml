@@ -15,7 +15,6 @@ jobs:
           command: |
             npm install 
             npm run build
-            npm run test
   build-and-deploy:
     docker:
       - image: 'node:16-buster'
@@ -33,10 +32,13 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  # build-and-test:
-  #   jobs:
-  #     - build-and-test
+  build-and-test:
+    jobs:
+      - build-and-test
 
   build-and-deploy:
     jobs:
-      - build-and-deploy
+      - build-and-deploy:
+          filters:
+            branches:
+              only: main
