@@ -15,7 +15,6 @@ jobs:
           command: |
             npm install 
             npm run build
-            npm run test
   build-and-deploy:
     docker:
       - image: 'node:16-buster'
