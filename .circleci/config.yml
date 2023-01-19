@@ -23,7 +23,9 @@ jobs:
       - checkout
       - run:
           command: |
+            cat openapi.yaml
             ./download_openapi.sh
+            cat openapi.yaml
             npm install 
             npm run build
       - aws-s3/sync:
