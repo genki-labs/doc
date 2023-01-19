@@ -39,7 +39,8 @@ workflows:
 
   build-and-deploy:
     jobs:
-      - build-and-deploy:
-          filters:
-            branches:
-              only: main
+      - build-and-deploy
+      # - build-and-deploy:
+      #     filters:
+      #       branches:
+      #         only: main
