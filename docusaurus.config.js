@@ -67,7 +67,7 @@ const config = {
       /** @type {import('docusaurus-preset-openapi').Options} */
       {
         api: {
-          // path: "../genki-portal-backend-nest/openapi.yaml",
+          // path: "../genki-portal-backend-nest/src/public/openapi.yaml",
           path: "openapi.yaml",
           routeBasePath: "/api",
         },
