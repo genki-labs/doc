@@ -13,6 +13,7 @@ jobs:
       - checkout
       - run:
           command: |
+            ./download_openapi.sh
             npm install 
             npm run build
   build-and-deploy:
