@@ -20,7 +20,7 @@ Please add the authorization links below for Twitter and Discord in your website
 
 The authorization status comes with user status, which you can retrieve from the [Get User Status](/api/get-user-status) API endpoint. Please go to the API document for more details.
 
-## Example 1
+## Workflow
 
 In GenkiBox, we check the authorization status of the user first.
 
@@ -40,20 +40,28 @@ In GenkiBox, we check the authorization status of the user first.
   alt="Logged In"
 />
 
-## Example 2
+## Example
 
 In this example, we will add a Twitter authorization link and a Discord authorization link on Genki homepage (https://genki.io/).
 
 After the user connects the wallet, we query the authorization with [Get User Status](/api/get-user-status). For each of Twitter and Discord, if the user has granted the permission, it shows the verify button. Otherwise, it shows the connect button. The workflow is described as follows.
 
 ```javascript
+/* Note: It's not recemmended to expose your API keys to the users */
+const API_KEY = "[YOUR_API_KEY]";
+
 const QuestPanel = ({ campaignId, userAddress }) => {
   const [twitter, setTwitter] = useState();
   const [discord, setDiscord] = useState();
 
   useEffect(() => {
     if (userAddress) {
-      fetch(`https://box.genki.io/api/v1/campaigns/${campaignId}/users/${userAddress}`)
+      fetch(`https://box.genki.io/api/v1/campaigns/${campaignId}/users/${userAddress}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${API_KEY}`,
+        }
+      })
         .then((response) => {
           return response.json();
         })
